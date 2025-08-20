@@ -1,0 +1,49 @@
+[
+  {
+    "frame_id": "frame_1",
+    "capture_ts": 1690000000000,
+    "recv_ts": 1690000000100,
+    "inference_ts": 1690000000120,
+    "detections": [
+      {
+        "label": "person",
+        "score": 0.93,
+        "xmin": 0.12,
+        "ymin": 0.08,
+        "xmax": 0.34,
+        "ymax": 0.67
+      }
+    ]
+  },
+  {
+    "frame_id": "frame_2",
+    "capture_ts": 1690000000200,
+    "recv_ts": 1690000000300,
+    "inference_ts": 1690000000320,
+    "detections": [
+      {
+        "label": "person",
+        "score": 0.95,
+        "xmin": 0.15,
+        "ymin": 0.10,
+        "xmax": 0.38,
+        "ymax": 0.70
+      },
+      {
+        "label": "chair",
+        "score": 0.87,
+        "xmin": 0.60,
+        "ymin": 0.45,
+        "xmax": 0.75,
+        "ymax": 0.85
+      }
+    ]
+  },
+  {
+    "frame_id": "frame_3",
+    "capture_ts": 1690000000400,
+    "recv_ts": 1690000000500,
+    "inference_ts": 1690000000520,
+    "detections": []
+  }
+] 
