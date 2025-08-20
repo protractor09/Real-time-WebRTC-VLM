@@ -11,12 +11,43 @@ This enhanced version combines real-time video conferencing with AI-powered obje
 - **Mobile Support**: Works on both desktop and mobile devices
 - **HTTPS Ready**: Compatible with ngrok for external access
 
+## 🚀 One-Command Startup
+
+### Option 1: Native Installation (Recommended for Development)
+Choose the appropriate script for your operating system:
+
+**Linux/macOS:**
+```bash
+./start.sh
+```
+
+**Windows Command Prompt:**
+```cmd
+start.bat
+```
+
+**Windows PowerShell:**
+```powershell
+.\start.ps1
+```
+
+### Option 2: Docker Deployment (Recommended for Production)
+```bash
+docker-compose up
+```
+
+**Note**: Make sure Docker and Docker Compose are installed on your system.
+
 ## Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+- **Node.js** (v14 or higher)
+- **npm** or **yarn**
+- **Modern web browser** with camera support
+- **HTTPS connection** (required for camera access)
 
-## Installation
+## Manual Installation & Setup
+
+If you prefer to set up manually:
 
 1. Install dependencies:
 ```bash
@@ -33,16 +64,15 @@ The server will run on port 3000 by default.
 ## Usage
 
 ### Local Development
-1. Start the server: `npm start`
+1. Run one of the startup commands above
 2. Open your browser to `http://localhost:3000`
 3. Allow camera permissions when prompted
 4. The object detection will start automatically on your camera feed
 
 ### Using ngrok for Mobile Testing
-1. Install ngrok: `npm install -g ngrok`
-2. Start your server: `npm start`
-3. In a new terminal, run: `ngrok http 3000`
-4. Use the HTTPS URL provided by ngrok on your mobile device
+1. Start your server using one of the startup commands
+2. In a new terminal, run: `ngrok http 3000`
+3. Use the HTTPS URL provided by ngrok on your mobile device
 
 **Important**: Camera access requires HTTPS, which ngrok provides.
 
@@ -66,8 +96,24 @@ The application automatically collects comprehensive performance metrics:
 
 ### Exporting Metrics
 - **Download Metrics**: Click "Download Metrics" to save metrics.json
+- **Download Frame Logs**: Click "Download Frame Logs" to save frame_detections.json
 - **Reset Metrics**: Click "Reset Metrics" to start fresh measurements
 - **Raw Data**: Click "Show Raw Data" to view detailed metrics in console
+
+## Frame-by-Frame Detection Logging
+
+The system automatically logs every frame with detections in this format:
+```json
+{
+  "frame_id": "frame_1",
+  "capture_ts": 1690000000000,
+  "recv_ts": 1690000000100,
+  "inference_ts": 1690000000120,
+  "detections": [
+    { "label": "person", "score": 0.93, "xmin": 0.12, "ymin": 0.08, "xmax": 0.34, "ymax": 0.67 }
+  ]
+}
+```
 
 ## Benchmarking
 
@@ -129,6 +175,11 @@ node_server/
 │   └── room.ejs           # HTML template with metrics display
 ├── bench/
 │   └── run_bench.sh       # Benchmark script
+├── start.sh               # Linux/macOS startup script
+├── start.bat              # Windows startup script
+├── start.ps1              # PowerShell startup script
+├── docker-compose.yml     # Docker deployment configuration
+├── Dockerfile             # Docker container definition
 └── package.json           # Dependencies
 ```
 
@@ -162,6 +213,11 @@ node_server/
 - Check firewall settings allow connections on port 3000
 - Ensure ngrok is properly configured for HTTPS
 
+### Startup Issues
+- Ensure Node.js 14+ is installed
+- Check if port 3000 is available
+- Verify all dependencies are installed correctly
+
 ## Notes
 
 - **Object detection** runs on connected user's camera feed
@@ -170,4 +226,8 @@ node_server/
 - **Performance metrics** are collected automatically
 - **Metrics export** provides detailed performance analysis
 - The application automatically handles camera permissions and connections
-- Mobile devices will use the front-facing camera by default 
+- Mobile devices will use the front-facing camera by default
+
+## Design Documentation
+
+For detailed information about the system architecture, low-resource mode implementation, and backpressure policies, see [DESIGN_REPORT.md](DESIGN_REPORT.md). 
