@@ -113,8 +113,8 @@
                 const [x, y, width, height] = prediction.bbox;
 
                 // Scale coordinates
-                const scaledX = x * scaleX;
-                const scaledY = y * scaleY;
+                const scaledX = x * scaleX - 275;
+                const scaledY = y * scaleY - 200;
                 const scaledWidth = width * scaleX;
                 const scaledHeight = height * scaleY;
 
@@ -170,6 +170,7 @@
                 // Log the chosen backend to the console for verification
                 tf.setBackend('wasm');
                 await tf.ready();
+                
                 console.log('TensorFlow.js backend:', tf.getBackend());
                 showMessage('Loading the model...');
 

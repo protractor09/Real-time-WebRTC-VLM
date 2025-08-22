@@ -345,14 +345,3 @@ function addVideoStream(video, stream, label) {
   console.log(`Added video stream for: ${label}`)
   updateDebugInfo(`Video added: ${label}`)
 }
-
-
-
-
-
-
-
-
-
-
-
